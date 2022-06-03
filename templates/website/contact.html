@@ -64,8 +64,7 @@
             <!-- Start  contact -->
             <div class="col-md-6">
               <div class="form contact-form">
-                <form action="{% url 'website:contact' %}" method="post">
-                  {% csrf_token %}
+                <form action="{% url 'website:contact' %}" method="post" role="form" class="php-email-form">
                   <div class="form-group">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                   </div>
@@ -79,8 +78,11 @@
                     <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                   </div>
                   <div class="my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
                   </div>
-                  <div class="php-email-form"><button type="submit">Send Message</button></div>
+                  <div class="text-center"><button type="submit">Send Message</button></div>
                 </form>
               </div>
             </div>
