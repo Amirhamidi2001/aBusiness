@@ -15,7 +15,7 @@
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">The Best Business Information </h2>
                 <p class="animate__animated animate__fadeInUp">We're In The Business Of Helping You Start Your Business</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                <a href="{% url 'website:about' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
                 <p class="animate__animated animate__fadeInUp">Helping Business Security & Peace of Mind for Your Family</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                <a href="{% url 'website:about' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
@@ -35,18 +35,18 @@
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Temporibus autem quibusdam</h2>
                 <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+                <a href="{% url 'website:about' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
               </div>
             </div>
           </div>
 
         </div>
 
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <a class="carousel-control-prev" href="{% url 'website:index' %}" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
         </a>
 
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <a class="carousel-control-next" href="{% url 'website:index' %}" role="button" data-bs-slide="next">
           <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
         </a>
 
@@ -66,7 +66,7 @@
           <div class="px-5 py-5 py-lg-0">
             <h2>working with us</h2>
             <h5>Web Design, Ready Home, Construction and Co-operate Outstanding Buildings.</h5>
-            <a href="#contact" class="ready-btn scrollto">Contact us</a>
+            <a href="{% url 'website:contact' %}" class="ready-btn scrollto">Contact us</a>
           </div>
         </div>
       </div>
@@ -232,7 +232,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
-                  <a href="blog.html">
+                  <a href="{% url 'blog:blog' %}">
                     <img src="{% static 'img/blog/1.jpg' %}" alt="">
                   </a>
                 </div>
@@ -247,14 +247,14 @@
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Assumenda repud eum veniam</a>
+                    <a href="{% url 'blog:blog' %}">Assumenda repud eum veniam</a>
                   </h4>
                   <p>
                     Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
                   </p>
                 </div>
                 <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
+                  <a href="{% url 'blog:blog' %}" class="ready-btn">Read more</a>
                 </span>
               </div>
               <!-- Start single blog -->
@@ -264,7 +264,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
-                  <a href="blog.html">
+                  <a href="{% url 'blog:blog' %}">
                     <img src="{% static 'img/blog/2.jpg' %}" alt="">
                   </a>
                 </div>
@@ -279,14 +279,14 @@
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Explicabo magnam quibusdam.</a>
+                    <a href="{% url 'blog:blog' %}">Explicabo magnam quibusdam.</a>
                   </h4>
                   <p>
                     Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
                   </p>
                 </div>
                 <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
+                  <a href="{% url 'blog:blog' %}" class="ready-btn">Read more</a>
                 </span>
               </div>
               <!-- Start single blog -->
@@ -296,7 +296,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
                 <div class="single-blog-img">
-                  <a href="blog.html">
+                  <a href="{% url 'blog:blog' %}">
                     <img src="{% static 'img/blog/3.jpg' %}" alt="">
                   </a>
                 </div>
@@ -311,14 +311,14 @@
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Lorem ipsum dolor sit amet</a>
+                    <a href="{% url 'blog:blog' %}">Lorem ipsum dolor sit amet</a>
                   </h4>
                   <p>
                     Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
                   </p>
                 </div>
                 <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
+                  <a href="{% url 'blog:blog' %}" class="ready-btn">Read more</a>
                 </span>
               </div>
             </div>
@@ -335,7 +335,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
             <div class="suscribe-text text-center">
               <h3>Welcome to our aBusiness company</h3>
-              <a class="sus-btn" href="#">Get A quote</a>
+              <a class="sus-btn" href="{% url 'website:index' %}">Get A quote</a>
             </div>
           </div>
         </div>
