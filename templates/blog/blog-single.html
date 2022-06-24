@@ -43,10 +43,10 @@
                 <!-- search option end -->
               </div>
               <div class="single-blog-page">
-                {% include 'blog/blog-recent-post.html' %}
+                {% post_recent %}
               </div>
               <div class="single-blog-page">
-                {% include 'blog/blog-category.html' %}
+                {% post_category %}
               </div>
               <div class="single-blog-page">
                 {% include 'blog/blog-archive.html' %}
@@ -70,11 +70,13 @@
                     <h2>{{post.title}}</h2>
                     <div class="entry-meta">
                       <span class="author-meta"><i class="bi bi-person"></i> <a href="#">{{post.author}}</a></span>
-                      <span><i class="bi bi-eye"></i>{{post.counted_views}}</span>
+                      <span><i class="bi bi-eye"></i>{{post.counted_views}} views</span>
                       <span><i class="bi bi-clock"></i>{{post.published_date|date:"d M Y"}}</span>
                       <span class="tag-meta">
                         <i class="bi bi-folder"></i>
-                        <a href="#">{{ post.category.all|join:", " }}</a>
+                        {% for cat in post.category.all %}
+                        <a href="{% url 'blog:category' cat_name=cat.name %}">{{cat.name}}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
                       </span>
                       <span>
                         <i class="bi bi-tags"></i>
