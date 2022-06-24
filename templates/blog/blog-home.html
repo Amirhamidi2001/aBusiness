@@ -90,7 +90,7 @@
                       <a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a>
                     </h4>
                     <p>
-                      {{post.content}}
+                      {{post.content|truncatewords:4}}
                     </p>
                   </div>
                   <span>
