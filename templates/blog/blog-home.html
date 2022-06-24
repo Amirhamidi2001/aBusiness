@@ -60,155 +60,45 @@
           <!-- Start single blog -->
           <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="single-blog">
-                  <div class="single-blog-img">
-                    <a href="{% url 'blog:single' %}">
-                      <img src="{% static 'img/blog/1.jpg' %}" alt="">
-                    </a>
-                  </div>
-                  <div class="blog-meta">
-                    <span class="comments-type">
-                      <i class="bi bi-chat"></i>
-                      <a href="{% url 'blog:single' %}">11 comments</a>
-                    </span>
-                    <span class="date-type">
-                      <i class="bi bi-calendar"></i>2016-03-05 / 09:10:16
-                    </span>
-                  </div>
-                  <div class="blog-text">
-                    <h4>
-                      <a href="{% url 'blog:single' %}">Post my imagine Items</a>
-                    </h4>
-                    <p>
-                      Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit.
-                    </p>
-                  </div>
-                  <span>
-                    <a href="{% url 'blog:single' %}" class="ready-btn">Read more</a>
-                  </span>
-                </div>
-              </div>
-              <!-- End single blog -->
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="single-blog">
-                  <div class="single-blog-img">
-                    <a href="{% url 'blog:single' %}">
-                      <img src="{% static 'img/blog/2.jpg' %}" alt="">
-                    </a>
-                  </div>
-                  <div class="blog-meta">
-                    <span class="comments-type">
-                      <i class="bi bi-chat"></i>
-                      <a href="{% url 'blog:single' %}">7 comments</a>
-                    </span>
-                    <span class="date-type">
-                      <i class="bi bi-calendar"></i>2016-03-05 / 09:10:16
-                    </span>
-                  </div>
-                  <div class="blog-text">
-                    <h4>
-                      <a href="{% url 'blog:single' %}">Post my imagine Items</a>
-                    </h4>
-                    <p>
-                      Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit.
-                    </p>
-                  </div>
-                  <span>
-                    <a href="{% url 'blog:single' %}" class="ready-btn">Read more</a>
-                  </span>
-                </div>
-              </div>
+              {% for post in posts %}
               <!-- Start single blog -->
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="single-blog">
                   <div class="single-blog-img">
-                    <a href="{% url 'blog:single' %}">
-                      <img src="{% static 'img/blog/3.jpg' %}" alt="">
+                    <a href="{% url 'blog:single' pid=post.id %}">
+                      <img src="{{post.image.url}}" alt="">
                     </a>
                   </div>
                   <div class="blog-meta">
                     <span class="comments-type">
-                      <i class="bi bi-chat"></i>
-                      <a href="{% url 'blog:single' %}">13 comments</a>
+                      <i class="bi bi-person"></i>
+                      <a href="{% url 'blog:single' pid=post.id %}">{{post.author}}</a>
                     </span>
                     <span class="date-type">
-                      <i class="bi bi-calendar"></i>2016-03-05 / 09:10:16
+                      <i class="bi bi-eye"></i>{{post.counted_views}} views
                     </span>
-                  </div>
-                  <div class="blog-text">
-                    <h4>
-                      <a href="{% url 'blog:single' %}">Post my imagine Items</a>
-                    </h4>
-                    <p>
-                      Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit.
-                    </p>
-                  </div>
-                  <span>
-                    <a href="{% url 'blog:single' %}" class="ready-btn">Read more</a>
-                  </span>
-                </div>
-              </div>
-              <!-- End single blog -->
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="single-blog">
-                  <div class="single-blog-img">
-                    <a href="{% url 'blog:single' %}">
-                      <img src="{% static 'img/blog/4.jpg' %}" alt="">
-                    </a>
-                  </div>
-                  <div class="blog-meta">
+                    <span class="date-type">
+                      <i class="bi bi-clock"></i>{{post.published_date|date:"d M Y"}}
+                    </span>
                     <span class="comments-type">
-                      <i class="bi bi-chat"></i>
-                      <a href="{% url 'blog:single' %}">1 comments</a>
-                    </span>
-                    <span class="date-type">
-                      <i class="bi bi-calendar"></i>2016-03-05 / 09:10:16
+                      <i class="bi bi-folder"></i>
+                      <a href="{% url 'blog:single' pid=post.id %}">{{ post.category.all|join:", " }}</a>
                     </span>
                   </div>
                   <div class="blog-text">
                     <h4>
-                      <a href="{% url 'blog:single' %}">Post my imagine Items</a>
+                      <a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a>
                     </h4>
                     <p>
-                      Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit.
+                      {{post.content}}
                     </p>
                   </div>
                   <span>
-                    <a href="{% url 'blog:single' %}" class="ready-btn">Read more</a>
+                    <a href="{% url 'blog:single' pid=post.id %}" class="ready-btn">Read more</a>
                   </span>
                 </div>
               </div>
-              <!-- Start single blog -->
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="single-blog">
-                  <div class="single-blog-img">
-                    <a href="{% url 'blog:single' %}">
-                      <img src="{% static 'img/blog/5.jpg' %}" alt="">
-                    </a>
-                  </div>
-                  <div class="blog-meta">
-                    <span class="comments-type">
-                      <i class="bi bi-chat"></i>
-                      <a href="{% url 'blog:single' %}">10 comments</a>
-                    </span>
-                    <span class="date-type">
-                      <i class="bi bi-calendar"></i>2016-03-05 / 09:10:16
-                    </span>
-                  </div>
-                  <div class="blog-text">
-                    <h4>
-                      <a href="{% url 'blog:single' %}">Post my imagine Items</a>
-                    </h4>
-                    <p>
-                      Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit.
-                    </p>
-                  </div>
-                  <span>
-                    <a href="{% url 'blog:single' %}" class="ready-btn">Read more</a>
-                  </span>
-                </div>
-              </div>
+              {% endfor %}
               <!-- End single blog -->
               <div class="blog-pagination">
                 <ul class="pagination">
