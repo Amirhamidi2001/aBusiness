@@ -31,16 +31,7 @@
           <div class="col-lg-4 col-md-4">
             <div class="page-head-blog">
               <div class="single-blog-page">
-                <!-- search option start -->
-                <form action="#">
-                  <div class="search-option">
-                    <input type="text" placeholder="Search...">
-                    <button class="button" type="submit">
-                      <i class="bi bi-search"></i>
-                    </button>
-                  </div>
-                </form>
-                <!-- search option end -->
+                {% include 'blog/blog-search.html' %}
               </div>
               <div class="single-blog-page">
                 {% post_recent %}
@@ -72,7 +63,7 @@
                   <div class="blog-meta">
                     <span class="comments-type">
                       <i class="bi bi-person"></i>
-                      <a href="{% url 'blog:single' pid=post.id %}">{{post.author}}</a>
+                      <a href="{% url 'blog:author' author_username=post.author.username %}">{{post.author}}</a>
                     </span>
                     <span class="date-type">
                       <i class="bi bi-eye"></i>{{post.counted_views}} views
