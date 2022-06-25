@@ -42,7 +42,15 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex justify-content-between">
-
+      <div>
+        {% if request.user.is_authenticated %}
+        <li><a  href="#">Logged in as {{request.user.username}}</a></li>
+        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:login' %}">Login</a></li>
+        <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+        {% endif %}
+      </div>
       <div class="logo">
         <h1><a href="{% url 'website:index' %}"><span>a</span>Business</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
