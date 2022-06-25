@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from website.forms import ContactForm
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -12,7 +15,15 @@ def about_view(request):
 
 
 def contact_view(request):
-    return render(request, 'website/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Your message has been sent. Thank you!')
+        else:
+            messages.add_message(request, messages.ERROR, 'your massage didnt submited')
+    form = ContactForm()
+    return render(request, 'website/contact.html', {'form': form})
 
 
 def portfolio_view(request):
