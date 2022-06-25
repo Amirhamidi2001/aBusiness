@@ -1,5 +1,3 @@
-from os import stat
-from unicodedata import category
 from django import template
 from blog.models import Post, Category
 
