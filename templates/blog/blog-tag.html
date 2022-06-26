@@ -2,12 +2,10 @@
     <div class="popular-tag left-side-tags left-blog">
       <h4>popular tags</h4>
       <ul>
-        {% for post in posts %}
         {% for tag in post.tags.all %}
         <li>
           <a href="{% url 'blog:tag' tag_name=tag.name %}">{{tag.name}}</a>
         </li>
-        {% endfor %}
         {% endfor %}
       </ul>
     </div>
