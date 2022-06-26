@@ -40,9 +40,6 @@
                 {% postcategory %}
               </div>
               <div class="single-blog-page">
-                {% include 'blog/blog-archive.html' %}
-              </div>
-              <div class="single-blog-page">
                 {% include 'blog/blog-tag.html' %}
               </div>
             </div>
@@ -75,7 +72,7 @@
                             <a href="{% url 'blog:tag' tag_name=tag.name %}">{{tag.name}}</a>{% if not forloop.last %},{% endif %}
                           {% endfor %}
                       </span>
-                      <span><i class="bi bi-chat"></i> <a href="#">6 comments</a></span>
+                      <span><i class="bi bi-chat"></i> <a href="#">{{comments|length}} comments</a></span>
                     </div>
                     <div class="entry-content">
                       <p>{{post.content}}</p>
@@ -83,12 +80,12 @@
                   </div>
                 </article>
                 <div class="clear"></div>
-                <!--
                 <div class="single-post-comments">
                   <div class="comments-area">
                     <div class="comments-heading">
-                      <h3>6 comments</h3>
+                      <h3>{{comments|length}} comments</h3>
                     </div>
+                    {% for comment in comments %}
                     <div class="comments-list">
                       <ul>
                         <li class="threaded-comments">
@@ -98,95 +95,51 @@
                             </div>
                             <div class="comments-content-wrap">
                               <span>
-                                <b><a href="#">demo</a></b>
-                                Post author
-                                <span class="post-time">October 6, 2014 at 4:25 pm</span>
-                                <a href="#">Reply</a>
+                                <b><a href="#">{{comment.name}}</a></b>
+                                {{comment.subject}}
+                                <span class="post-time">{{comment.created_date}}</span>
                               </span>
-                              <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur</p>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="comments-details">
-                            <div class="comments-list-img">
-                              <img src="{% static 'img/blog/b02.jpg' %}" alt="post-author">
-                            </div>
-                            <div class="comments-content-wrap">
-                              <span>
-                                <b><a href="#">admin</a></b>
-                                Post author
-                                <span class="post-time">October 6, 2014 at 6:18 pm </span>
-                                <a href="#">Reply</a>
-                              </span>
-                              <p>Quisque orci nibh, porta vitae sagittis sit amet, vehicula vel mauris. Aenean at justo dolor. Fusce ac sapien bibendum, scelerisque libero nec</p>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="threaded-comments">
-                          <div class="comments-details">
-                            <div class="comments-list-img">
-                              <img src="{% static 'img/blog/b02.jpg' %}" alt="post-author">
-                            </div>
-                            <div class="comments-content-wrap">
-                              <span>
-                                <b><a href="#">demo</a></b>
-                                Post author
-                                <span class="post-time">October 6, 2014 at 7:25 pm</span>
-                                <a href="#">Reply</a>
-                              </span>
-                              <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur</p>
+                              <p>{{comment.message}}</p>
                             </div>
                           </div>
                         </li>
                       </ul>
                     </div>
+                    {% endfor %}
                   </div>
                   <div class="comment-respond">
-                    <h3 class="comment-reply-title">Leave a Reply </h3>
-                    <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
-                    <form action="#">
+                    <form action="{% url 'blog:single' pid=post.id %}" method="post">
+                      {% csrf_token %}
                       <div class="row">
+                          <input type="hidden" name="post" value="{{ post.id }}"/>
                         <div class="col-lg-4 col-md-4">
                           <p>Name *</p>
-                          <input type="text" />
+                          <input type="text" name="name"/>
                         </div>
                         <div class="col-lg-4 col-md-4">
                           <p>Email *</p>
-                          <input type="email" />
+                          <input type="email" name="email"/>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                          <p>Website</p>
-                          <input type="text" />
+                          <p>Subject</p>
+                          <input type="text" name="subject"/>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
-                          <p>Website</p>
-                          <textarea id="message-box" cols="30" rows="10"></textarea>
+                          <p>Message</p>
+                          <textarea name="message" id="message-box" cols="30" rows="10"></textarea>
                           <input type="submit" value="Post Comment" />
                         </div>
                       </div>
                     </form>
+                    {% if messages %}
+									<ul class="messages">
+    								{% for message in messages %}
+    								<li class="genric-btn primary" style="float: left;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    								{% endfor %}
+									</ul>
+									{% endif %}
                   </div>
-                </div>-->
-                <div id="disqus_thread"></div>
-                <script>
-                    /**
-                    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
-                    /*
-                    var disqus_config = function () {
-                    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                    };
-                    */
-                    (function() { // DON'T EDIT BELOW THIS LINE
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://abusiness.herokuapp.com.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                    })();
-                </script>
-                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
                 <!-- single-blog end -->
               </div>
             </div>
