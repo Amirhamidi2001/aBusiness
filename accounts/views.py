@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
 def login_view(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':
