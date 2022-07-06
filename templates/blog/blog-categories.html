@@ -4,5 +4,5 @@
       {% for name, count in category.items %}
       <li><a href="{% url 'blog:category' cat_name=name %}">{{name}} <span>: {{count}}</span></a></li>
       {% endfor %}
-  </ul>
+    </ul>
 </div>
